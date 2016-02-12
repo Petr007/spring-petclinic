@@ -26,7 +26,7 @@ public class FindOwnersIT extends SeleniumTest {
 		findButton.click();
 		makeScreenShot();
 		assertEquals("Owners", driver.findElement(By.xpath("/html/body/div/h2")).getText());
-		if (driver.getClass() == HtmlUnitDriver.class) {
+		if (driver.getClass() != HtmlUnitDriver.class) {
 			WebElement searchBox = driver.findElement(By.xpath("//*[@id=\"owners_filter\"]/label/input"));
 			searchBox.sendKeys("D");
 			makeScreenShot();
