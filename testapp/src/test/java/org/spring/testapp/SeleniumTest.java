@@ -47,7 +47,7 @@ public class SeleniumTest {
 	}
 
 	protected String getHostName() {
-		String hostName = System.getProperty("HOSTNAME");
+		String hostName = System.getenv("HOSTNAME");
 		if (hostName == null) {
 			hostName = "52.49.186.45";
 		}
