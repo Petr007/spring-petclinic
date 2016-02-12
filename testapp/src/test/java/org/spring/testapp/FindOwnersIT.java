@@ -2,34 +2,16 @@ package org.spring.testapp;
 
 import static org.junit.Assert.assertEquals;
 
-import java.awt.AWTException;
 import java.io.IOException;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class FindOwnersIT extends SeleniumTest {
 
-	private static WebDriver driver;
 	private int imageCounter = 0;
-
-	@BeforeClass
-	public static void setUpClass() throws IOException, AWTException {
-		driver = new FirefoxDriver();
-	}
-
-	@AfterClass
-	public static void cleanUp() {
-		if (driver != null) {
-			driver.close();
-			driver.quit();
-		}
-	}
 
 	@Test
 	public void smokeTest() throws InterruptedException, IOException {

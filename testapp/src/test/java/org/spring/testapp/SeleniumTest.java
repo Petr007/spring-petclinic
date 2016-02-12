@@ -1,14 +1,34 @@
 package org.spring.testapp;
 
+import java.awt.AWTException;
 import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class SeleniumTest {
+
+	static protected WebDriver driver;
+	
+	@BeforeClass
+	public static void setUpClass() throws IOException, AWTException {
+		driver = new HtmlUnitDriver (false);
+	}
+
+	@AfterClass
+	public static void cleanUp() throws InterruptedException {
+		Thread.sleep(10000L);
+		if (driver != null) {
+			driver.close();
+			driver.quit();
+		}
+	}
 
 	public SeleniumTest() {
 		super();
