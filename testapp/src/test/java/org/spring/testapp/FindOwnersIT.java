@@ -6,8 +6,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class FindOwnersIT extends SeleniumTest {
 
@@ -26,21 +26,23 @@ public class FindOwnersIT extends SeleniumTest {
 		findButton.click();
 		makeScreenShot();
 		assertEquals("Owners", driver.findElement(By.xpath("/html/body/div/h2")).getText());
-		WebElement searchBox = driver.findElement(By.xpath("//*[@id=\"owners_filter\"]/label/input"));
-		searchBox.sendKeys("D");
-		makeScreenShot();
-		searchBox.sendKeys("a");
-		makeScreenShot();
-		searchBox.sendKeys("v");
-		makeScreenShot();
-		searchBox.sendKeys("i");
-		makeScreenShot();
-		searchBox.sendKeys("d");
-		makeScreenShot();
-		WebElement name = driver.findElement(By.xpath("//*[@id=\"owners\"]/tbody/tr/td[1]/a"));
-		assertEquals("David Schroeder", name.getText());
-		WebElement address = driver.findElement(By.xpath("//*[@id=\"owners\"]/tbody/tr/td[2]"));
-		assertEquals("2749 Blackhawk Trail", address.getText());
+		if (driver.getClass() == HtmlUnitDriver.class) {
+			WebElement searchBox = driver.findElement(By.xpath("//*[@id=\"owners_filter\"]/label/input"));
+			searchBox.sendKeys("D");
+			makeScreenShot();
+			searchBox.sendKeys("a");
+			makeScreenShot();
+			searchBox.sendKeys("v");
+			makeScreenShot();
+			searchBox.sendKeys("i");
+			makeScreenShot();
+			searchBox.sendKeys("d");
+			makeScreenShot();
+			WebElement name = driver.findElement(By.xpath("//*[@id=\"owners\"]/tbody/tr/td[1]/a"));
+			assertEquals("David Schroeder", name.getText());
+			WebElement address = driver.findElement(By.xpath("//*[@id=\"owners\"]/tbody/tr/td[2]"));
+			assertEquals("2749 Blackhawk Trail", address.getText());
+			}
 	}
 
 	private void makeScreenShot() throws IOException {
