@@ -15,10 +15,10 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 public class SeleniumTest {
 
 	static protected WebDriver driver;
-	
+
 	@BeforeClass
 	public static void setUpClass() throws IOException, AWTException {
-		driver = new HtmlUnitDriver (false);
+		driver = new HtmlUnitDriver(false);
 	}
 
 	@AfterClass
@@ -34,10 +34,16 @@ public class SeleniumTest {
 		super();
 	}
 
-	protected void makeScreenshot(WebDriver driver, Class clzz, int imageCounter) throws IOException {
-		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String filename = String.format("target/selenium/%s/screenshot%02d.png", clzz.getSimpleName(), imageCounter);
-		FileUtils.copyFile(screenshot, new File(filename));
+	protected void makeScreenshot(WebDriver driver, Class clzz, int imageCounter)
+			throws IOException {
+		if (driver.getClass() != HtmlUnitDriver.class) {
+			File screenshot = ((TakesScreenshot) driver)
+					.getScreenshotAs(OutputType.FILE);
+			String filename = String.format(
+					"target/selenium/%s/screenshot%02d.png",
+					clzz.getSimpleName(), imageCounter);
+			FileUtils.copyFile(screenshot, new File(filename));
+		}
 	}
 
 	protected String getHostName() {
